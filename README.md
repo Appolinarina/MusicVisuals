@@ -1,8 +1,8 @@
 # Music Visualiser Project
 
-Name:
+Name:		Andrew Carty,	Polina Pereyaslavets,	Eileen Coliban,		Fatima Alubaidi
 
-Student Number: 
+Student Number: C22488994,	C22447674,		C22304291,		C22305656
 
 ## Instructions
 - Fork this repository and use it a starter project for your assignment
