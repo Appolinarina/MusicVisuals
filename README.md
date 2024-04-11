@@ -1,6 +1,6 @@
 # Music Visualiser Project
 
-Name:		Andrew Carty,	Polina Pereyaslavets,	Eileen Coliban,		Fatima Alubaidi
+Name:		Andrew Carty,	Polina Pereyaslavets,	Aileen Coliban,		Fatima Alubaidi
 
 Student Number: C22488994,	C22447674,		C22304291,		C22305656
 

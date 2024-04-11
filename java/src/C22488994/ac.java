@@ -17,7 +17,7 @@ public class ac extends PApplet {
 
     public void setup(){
         //setup code
-        m = New Minim(this);
+       //m = New Minim(this);
         
     }
 
