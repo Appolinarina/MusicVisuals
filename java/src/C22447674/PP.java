@@ -18,6 +18,8 @@ class SubVisual extends Visual {
 
 
 
+
+
 public class PP extends PApplet {
     SubVisual visual;
     Minim minim;
@@ -38,7 +40,7 @@ public class PP extends PApplet {
         // Uncomment this to use the microphone
         // ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
         // ab = ai.mix; 
-        ap = minim.loadFile("tomp3.cc - 08 PsychNerD and Marco G  More Cowbell.mp3", 1024);
+        ap = minim.loadFile("MusicVisuals\\java\\data\\Heartbeat.mp3", 1024);
         ap.play();
         ab = ap.mix;
         colorMode(HSB);
