@@ -16,10 +16,6 @@ class SubVisual extends Visual {
     }
 }
 
-
-
-
-
 public class PP extends PApplet {
     SubVisual visual;
     Minim minim;
@@ -31,22 +27,28 @@ public class PP extends PApplet {
     float[] lerpedBuffer;
     float rotX, rotY;
     float r1, r2;
+    float defaultr1, defaultr2;
+
+    public void settings()
+    {
+        size(1000, 1000, P3D);
+        //fullScreen(P3D, SPAN);
+    }
     
     public void setup()
     {
         minim = new Minim(this);
         visual = new SubVisual();
-        
         // Uncomment this to use the microphone
         // ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
         // ab = ai.mix; 
-        ap = minim.loadFile("MusicVisuals\\java\\data\\Heartbeat.mp3", 1024);
+        ap = minim.loadFile("../data/Heartbeat.mp3", 1024);
         ap.play();
         ab = ap.mix;
         colorMode(HSB);
         rotX = rotY = 0;
-        r1 = 100;
-        r2 = 60;
+        defaultr1 = 100;
+        defaultr2 = 60;
         perspective((float) (PI/3.0), width/height, 1, 1000);
         pointLight(255, 255, 255, 400, 400, 400);
         float cameraX = (float)(width / 2.0);
@@ -56,6 +58,7 @@ public class PP extends PApplet {
         float targetY = (float)(height / 2.0);
         float targetZ = 0;
         camera(cameraX, cameraY, cameraZ, targetX, targetY, targetZ, 0, 1, 0);
+        
     }
 
     float off = 0;
@@ -99,6 +102,8 @@ public class PP extends PApplet {
         float angleIncrement = TWO_PI / lines; // Angle increment between lines
         float hueIncrement = 255.0f / lines; // Hue increment between lines
         float hue = 0; // Initial hue value
+        r1 = defaultr1 * lines/100;
+        r2 = defaultr2 * lines/100;
         for (float angle = 0; angle < TWO_PI; angle += angleIncrement) {
             stroke(hue, 255, 255); // Set stroke color based on current hue
             beginShape(LINES);
