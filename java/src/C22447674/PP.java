@@ -6,9 +6,20 @@ import ddf.minim.AudioPlayer;
 import ddf.minim.AudioSource;
 import ddf.minim.Minim;
 import processing.core.PApplet;
+import ie.tudublin.Visual;
+
+//subclass
+class SubVisual extends Visual {
+    // Implement the abstract method
+    void display() {
+        System.out.println("Displaying visual.");
+    }
+}
+
+
 
 public class PP extends PApplet {
-
+    SubVisual visual;
     Minim minim;
     AudioPlayer ap;
     AudioInput ai;
@@ -18,10 +29,12 @@ public class PP extends PApplet {
     float[] lerpedBuffer;
     float rotX, rotY;
     float r1, r2;
-
+    
     public void setup()
     {
         minim = new Minim(this);
+        visual = new SubVisual();
+        
         // Uncomment this to use the microphone
         // ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
         // ab = ai.mix; 
