@@ -16,6 +16,7 @@ public class ac extends PApplet{
     PApplet p;
     Minim m;
     Visual visual; //declare visual object
+    
     Minim minim; // declare minim object
     
     public void settings(){
