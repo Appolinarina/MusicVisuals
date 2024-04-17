@@ -9,13 +9,8 @@ public class EC extends PApplet {
     Minim minim;
     AudioPlayer track;
     AudioBuffer ab;
-    int canvasWidth = 1080;
-    int canvasHeight = 1080;
-
-    boolean direction = false;
-    float sphereRadius = 50;
-    float center_x = canvasWidth / 2;
-    int unit = 100;
+    int canvasWidth = 768;
+    int canvasHeight = 768;
 
     public void settings() {
         size(canvasWidth, canvasHeight);
@@ -24,34 +19,29 @@ public class EC extends PApplet {
 
     public void setup() {
         minim = new Minim(this);
-        try {
-            track = minim.loadFile("../data/Heartbeat.mp3", 1024);
-            track.play();
-            ab = track.mix;
-        } catch (Exception e) {
-            println("Error loading audio: " + e.getMessage());
-        }
+        track = minim.loadFile("../data/Heartbeat.mp3", 2048);
+        track.loop();
+        ab = track.mix;
     }
 
     public void draw() {
-        background(0); // Clear the canvas each frame
-        float amplitude = ab.level() * 500; // Scale amplitude level
+        background(0);
+        stroke(255);
+        strokeWeight(2);
+        noFill();
 
-        for (float angle = 0; angle <= 360; angle += 5) {
-            float radius = sphereRadius + amplitude;
-            float x = cos(radians(angle)) * radius + center_x;
-            float y = sin(radians(angle)) * radius + height / 2;
-            float colorScale = map(amplitude, 0, 500, 100, 255);
+        // Get the buffer sample for drawing the waveform
+        float[] buffer = ab.toArray();
 
-            noStroke();
-            fill(colorScale, 100, 255);
-            circle(x, y, unit / 10);
-            noFill();
+        for (int i = 0; i < buffer.length - 1; i++) {
+            // Map buffer value to a Y position
+            float x1 = map(i, 0, buffer.length, 0, width);
+            float y1 = map(buffer[i], -1, 1, 0, height);
+            float x2 = map(i + 1, 0, buffer.length, 0, width);
+            float y2 = map(buffer[i + 1], -1, 1, 0, height);
+            
+            line(x1, y1, x2, y2);
         }
-    }
-
-    float getGroundY(float x) {
-        return height / 2;
     }
 
     public static void main(String[] args) {
