@@ -12,9 +12,7 @@ public class EC extends PApplet {
     int canvasWidth = 1080;
     int canvasHeight = 1080;
 
-    // Additional variables for the visual effect
     boolean direction = false;
-    int surrCount = 0;
     float sphereRadius = 50;
     float center_x = canvasWidth / 2;
     int unit = 100;
@@ -37,31 +35,21 @@ public class EC extends PApplet {
 
     public void draw() {
         background(0); // Clear the canvas each frame
-        float surrRadMin = sphereRadius + sphereRadius * 0.5f * surrCount;
-        float surrRadMax = surrRadMin + surrRadMin * 0.125f;
-        float addon = frameCount * 1.5f;
+        float amplitude = ab.level() * 500; // Scale amplitude level
 
-        if (direction) {
-            addon *= 1.5;
-        }
-
-        for (float angle = 0; angle <= 240; angle += 1.5) {
-            float surroundingRadius = map(sin(radians(angle * 7 + addon)), -1, 1, surrRadMin, surrRadMax);
-            float surrYOffset = sin(radians(150)) * surroundingRadius;
-            int x = round(cos(radians(angle + 150)) * surroundingRadius + center_x);
-            float y = round(sin(radians(angle + 150)) * surroundingRadius + getGroundY(x) - surrYOffset);
+        for (float angle = 0; angle <= 360; angle += 5) {
+            float radius = sphereRadius + amplitude;
+            float x = cos(radians(angle)) * radius + center_x;
+            float y = sin(radians(angle)) * radius + height / 2;
+            float colorScale = map(amplitude, 0, 500, 100, 255);
 
             noStroke();
-            fill(map(surroundingRadius, surrRadMin, surrRadMax, 100, 255));
-            circle(x, y, 3 * unit / 10.24f);
+            fill(colorScale, 100, 255);
+            circle(x, y, unit / 10);
             noFill();
         }
-
-        direction = !direction;
-        surrCount++;
     }
 
-    // Utility method for calculating ground Y based on X
     float getGroundY(float x) {
         return height / 2;
     }
