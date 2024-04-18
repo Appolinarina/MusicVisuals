@@ -38,6 +38,12 @@ public class EC extends PApplet {
 
         fft = new FFT(track.bufferSize(), track.sampleRate());
     }
+    public void setShapeColor(PShape shape, int color) {
+        shape.setFill(color);
+        for (int i = 0; i < shape.getChildCount(); i++) {
+            setShapeColor(shape.getChild(i), color);
+        }
+    }
 
     public void draw() {
         background(0);
@@ -61,6 +67,12 @@ public class EC extends PApplet {
             float y1 = map(ab.get(i), -1, 1, yOffset - yScale, yOffset + yScale);
             float x2 = map(i + 1, 0, ab.size(), 0, width);
             float y2 = map(ab.get(i + 1), -1, 1, yOffset - yScale, yOffset + yScale);
+            // Calculate amplitude for color mapping
+            float amplitude = abs(ab.get(i)); // absolute value for amplitude
+            
+            // Map amplitude to a color gradient from light blue (low) to red (high)
+            int c = lerpColor(color(255), color(139, 0, 0), map(amplitude, 0, 1, 0, 1));
+            stroke(c);
             line(x1, y1, x2, y2);
         }
     
@@ -73,6 +85,12 @@ public class EC extends PApplet {
             float y1 = map(ab.get(i), -1, 1, yOffsetTop - yScale, yOffsetTop + yScale);
             float x2 = map(i + 1, 0, ab.size(), 0, width);
             float y2 = map(ab.get(i + 1), -1, 1, yOffsetTop - yScale, yOffsetTop + yScale);
+            // Calculate amplitude for color mapping
+            float amplitude = abs(ab.get(i)); // absolute value for amplitude
+            
+            // Map amplitude to a color gradient from light blue (low) to red (high)
+            int c = lerpColor(color(255), color(139, 0, 0), map(amplitude, 0, 1, 0, 1));
+            stroke(c);
             line(x1, y1, x2, y2);
         }
         popMatrix();
@@ -89,10 +107,14 @@ public class EC extends PApplet {
         avgAmplitude /= ab.size();
     
         // Map amplitude to a scale factor for dramatic effect
-        float scaleFactor = 50 + map(avgAmplitude, 0, 1, 0, 50);
+        float scaleFactor = 50 + map(avgAmplitude, 0, 1, 0, 70);
     
+        
         // Apply scaling based on audio
         scale(scaleFactor * 10);
+        // Set the heart model color to light pink and display it
+        int pinkColor =lerpColor(color(255, 182, 193), color(139, 0, 0), map(avgAmplitude, 0, 1, 0, 1)); // RGB for dark red
+        setShapeColor(heartModel, pinkColor);
         shape(heartModel);
     }
     
