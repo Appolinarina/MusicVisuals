@@ -12,10 +12,12 @@ public class EC extends PApplet {
     AudioBuffer ab;
     int canvasWidth = 768;
     int canvasHeight = 768;
+    PShape heartModel;
 
     public void settings() {
         size(canvasWidth, canvasHeight, P3D); // Use P3D renderer
         smooth(8);
+
     }
 
     public void setup() {
@@ -23,6 +25,8 @@ public class EC extends PApplet {
         track = minim.loadFile("../data/Heartbeat.mp3", 2048);
         track.loop();
         ab = track.mix;
+        heartModel = loadShape("heartObject.obj");  // Make sure the file name matches
+        heartModel.scale(0.1);  // Adjust the scale as needed
     }
 
     public void draw() {
