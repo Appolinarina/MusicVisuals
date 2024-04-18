@@ -51,6 +51,7 @@ public class EC extends PApplet {
         // Set waveform height and position more tightly controlled
         float yScale = height / 8; // Reducing the multiplier for height
         float yOffset = height * 0.75f; // Positioning the waveform lower on the screen
+        float yOffsetTop = height * 0.25f;
     
         pushMatrix(); // Save current transformation matrix
         translate(0, 0, -50); // Move waveform back in Z-axis to appear behind the heart
@@ -64,6 +65,17 @@ public class EC extends PApplet {
         }
     
         popMatrix(); // Restore previous transformation matrix
+        // Draw waveform at the top behind the heart, mirroring the bottom waveform
+        pushMatrix();
+        translate(0, 0, -50); // Move waveform back in Z-axis
+        for (int i = 0; i < ab.size() - 1; i++) {
+            float x1 = map(i, 0, ab.size(), 0, width);
+            float y1 = map(ab.get(i), -1, 1, yOffsetTop - yScale, yOffsetTop + yScale);
+            float x2 = map(i + 1, 0, ab.size(), 0, width);
+            float y2 = map(ab.get(i + 1), -1, 1, yOffsetTop - yScale, yOffsetTop + yScale);
+            line(x1, y1, x2, y2);
+        }
+        popMatrix();
     
         // Center the drawing for the heart model
         translate(width / 2, height / 2);
