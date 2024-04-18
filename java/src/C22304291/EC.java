@@ -6,6 +6,7 @@ import ddf.minim.Minim;
 import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 import processing.core.PShape;
+import processing.core.PVector;;
 
 public class EC extends PApplet {
     Minim minim;
@@ -15,11 +16,13 @@ public class EC extends PApplet {
     int canvasWidth = 768;
     int canvasHeight = 768;
     PShape heartModel;
+    ParticleSystem ps;
 
     public void settings() {
         size(canvasWidth, canvasHeight, P3D); // Use P3D renderer
         smooth(8);
     }
+    
 
     public void setup() {
         minim = new Minim(this);
@@ -37,7 +40,11 @@ public class EC extends PApplet {
         }
 
         fft = new FFT(track.bufferSize(), track.sampleRate());
+        // Initialize ParticleSystem
+        ps = new ParticleSystem(new PVector(width / 2, 50), this,400);
+
     }
+
     public void setShapeColor(PShape shape, int color) {
         shape.setFill(color);
         for (int i = 0; i < shape.getChildCount(); i++) {
@@ -59,6 +66,9 @@ public class EC extends PApplet {
         float yOffset = height * 0.75f; // Positioning the waveform lower on the screen
         float yOffsetTop = height * 0.25f;
     
+        // Draw particles
+        ps.addParticle();
+        ps.run();
         pushMatrix(); // Save current transformation matrix
         translate(0, 0, -50); // Move waveform back in Z-axis to appear behind the heart
     
@@ -116,6 +126,8 @@ public class EC extends PApplet {
         int pinkColor =lerpColor(color(255, 182, 193), color(139, 0, 0), map(avgAmplitude, 0, 1, 0, 1)); // RGB for dark red
         setShapeColor(heartModel, pinkColor);
         shape(heartModel);
+
+        
     }
     
     
