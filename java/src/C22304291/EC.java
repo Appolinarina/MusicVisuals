@@ -38,7 +38,7 @@ public class EC extends PApplet {
 
         // Set the base scale to 20.0f as requested
         float baseScale = 10.0f;
-        float scaleFactor = baseScale + map(avgAmplitude, 0, 1, 0, 1); // Dynamic scale based on amplitude
+        float scaleFactor = baseScale + map(avgAmplitude, 0, 1, 0, 20.0f); // Dynamic scale based on amplitude
 
         // Translate to the center of the screen for the heart drawing
         pushMatrix();
