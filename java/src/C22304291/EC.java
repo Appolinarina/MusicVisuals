@@ -4,6 +4,7 @@ import ddf.minim.AudioBuffer;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class EC extends PApplet {
     Minim minim;
@@ -13,7 +14,7 @@ public class EC extends PApplet {
     int canvasHeight = 768;
 
     public void settings() {
-        size(canvasWidth, canvasHeight);
+        size(canvasWidth, canvasHeight, P3D); // Use P3D renderer
         smooth(8);
     }
 
@@ -26,8 +27,8 @@ public class EC extends PApplet {
 
     public void draw() {
         background(0);
-
-        
+        lights(); // Add lighting to better see the 3D effect
+    
         // Calculate the average amplitude of the audio buffer
         float[] buffer = ab.toArray();
         float avgAmplitude = 0;
@@ -35,49 +36,37 @@ public class EC extends PApplet {
             avgAmplitude += abs(v);
         }
         avgAmplitude /= buffer.length;
-
-        // Set the base scale to 20.0f as requested
-        float baseScale = 10.0f;
-        float scaleFactor = baseScale + map(avgAmplitude, 0, 1, 0, 20.0f); // Dynamic scale based on amplitude
-
-        // Translate to the center of the screen for the heart drawing
-        pushMatrix();
-        translate(width / 2, height / 2);
-
-        // Use scale factor to change the heart size based on the audio amplitude
-        scale(scaleFactor, scaleFactor);
-
-        // Draw the heart shape
-        smooth();
+    
+        // Map amplitude to a scaling factor
+        float scaleFactor = 20 + map(avgAmplitude, 0, 1, 0, 20);
+    
+        // Center the drawing
+        translate(width / 2, height / 2 + 50); // Adjust vertical position to better view the heart
+        rotateY(frameCount * 0.01f); // Continuous rotation for dynamic effect
+    
+        // Heart top parts - two overlapping spheres
         noStroke();
         fill(255, 0, 0); // Red color for the heart
-
-        // Left side of the heart
-        beginShape();
-        vertex(0, -baseScale);
-        bezierVertex(-baseScale, -3 * baseScale, -3 * baseScale, -baseScale, 0, baseScale);
-        endShape(CLOSE);
-
-        // Right side of the heart
-        beginShape();
-        vertex(0, -baseScale);
-        bezierVertex(baseScale, -3 * baseScale, 3 * baseScale, -baseScale, 0, baseScale);
-        endShape(CLOSE);
-
+        pushMatrix();
+        translate(-30, 0, 0); // Adjust positioning to overlap spheres
+        sphere(scaleFactor);
         popMatrix();
-
-        // Draw the waveform
-        stroke(255);
-        strokeWeight(2);
-        noFill();
-        for (int i = 0; i < buffer.length - 1; i++) {
-            float x1 = map(i, 0, buffer.length, 0, width);
-            float y1 = map(buffer[i], -1, 1, 0, height);
-            float x2 = map(i + 1, 0, buffer.length, 0, width);
-            float y2 = map(buffer[i + 1], -1, 1, 0, height);
-            line(x1, y1, x2, y2);
-        }
+        pushMatrix();
+        translate(30, 0, 0); // Adjust positioning to overlap spheres
+        sphere(scaleFactor);
+        popMatrix();
+    
+        // Heart bottom part - use a rotated ellipsoid to simulate a cone
+        pushMatrix();
+        rotateX(PI / 2); // Rotate to point the ellipsoid downwards
+        translate(0, scaleFactor, 0);
+        scale(1f, 2.5f, 1f); // Stretch the ellipsoid to make it more cone-like
+        sphere(scaleFactor);
+        popMatrix();
     }
+    
+    
+    
 
     public static void main(String[] args) {
         PApplet.main("C22304291.EC");
