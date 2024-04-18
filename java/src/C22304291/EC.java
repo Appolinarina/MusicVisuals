@@ -42,6 +42,23 @@ public class EC extends PApplet {
             
             line(x1, y1, x2, y2);
         }
+
+        // Set drawing properties for the heart shape
+        smooth();
+        noStroke();
+        fill(255, 0, 0); // Red color for the heart
+        
+        // Draw the left half of the heart with a Bezier curve
+        beginShape();
+        vertex(50, 15);
+        bezierVertex(50, -5, 90, 5, 50, 40);
+        endShape();
+        
+        // Draw the right half of the heart with another Bezier curve
+        beginShape();
+        vertex(50, 15);
+        bezierVertex(50, -5, 10, 5, 50, 40);
+        endShape();
     }
 
     public static void main(String[] args) {
