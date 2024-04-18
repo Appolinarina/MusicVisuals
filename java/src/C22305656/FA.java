@@ -32,43 +32,44 @@ public class FA extends PApplet {
 
     public void draw() {
         background(0);
-        drawWaveVisualization(player);
+        drawWaveVisualisation(player);
     }
 
-    public void drawWaveVisualization(AudioPlayer music) {
+    public void drawWaveVisualisation(AudioPlayer music) {
         noStroke();
-
+    
         float orbValue = 0;
         float dotsValue = 0;
-
+    
         for (int i = 0; i < music.bufferSize() - 1; i++) {
-            // orb calculations
+            // Orb calculations
             float orbAngle = sin(i + orbValue) * 300;
             float orbX = sin(radians(i)) * (orbAngle + 30);
             float orbY = cos(radians(i)) * (orbAngle + 30);
-
-            // dots calculations
+    
+            // Dots calculations
             float dotsAngle = sin(i + dotsValue) * 10;
             float dotsX = sin(radians(i)) * (500 / dotsAngle);
             float dotsY = cos(radians(i)) * (500 / dotsAngle);
-
-            // draw orb
+    
+            // Draw orb
             fill(orbColor == 0 ? originalOrbColor : orbColor);
-            ellipse(orbX, orbY, music.left.get(i) * 5, music.left.get(i) * 5);
+            ellipse(orbX + width * 0.1f, orbY + height * 0.1f, music.left.get(i) * 5, music.left.get(i) * 5);
             fill(orbColor == 0 ? originalOrbColor : orbColor);
-            rect(orbX, orbY, music.right.get(i) * 5, music.left.get(i) * 5);
-
-            // draw dots
+            rect(orbX + width * 0.8f, orbY + height * 0.1f, music.right.get(i) * 5, music.left.get(i) * 5);
+    
+            // Draw dots
             fill(dotsColor == 0 ? originalDotsColor : dotsColor);
-            rect(dotsX, dotsY, music.left.get(i) * 10, music.left.get(i) * 5);
+            rect(dotsX + width * 0.1f, dotsY + height * 0.8f, music.left.get(i) * 10, music.left.get(i) * 5);
             fill(dotsColor == 0 ? originalDotsColor : dotsColor);
-            rect(dotsX, dotsY, music.right.get(i) * 5, music.right.get(i) * 10);
+            rect(dotsX + width * 0.8f, dotsY + height * 0.8f, music.right.get(i) * 5, music.right.get(i) * 10);
         }
-
-        // update orb and dots values
+    
+        // Update orb and dots values
         orbValue += 0.4;
         dotsValue += 0.008;
     }
+    
 
     // variables for orb and dots colors
     private float orbColor = 0;
