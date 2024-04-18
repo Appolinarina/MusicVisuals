@@ -27,7 +27,7 @@ public class EC extends PApplet {
 
     public void draw() {
         background(0);
-        lights(); // Add lighting to better see the 3D effect
+        lights(); // Improved lighting for 3D visibility
     
         // Calculate the average amplitude of the audio buffer
         float[] buffer = ab.toArray();
@@ -37,33 +37,42 @@ public class EC extends PApplet {
         }
         avgAmplitude /= buffer.length;
     
-        // Map amplitude to a scaling factor
-        float scaleFactor = 20 + map(avgAmplitude, 0, 1, 0, 20);
+        // Map amplitude to a scale factor for dramatic effect
+        float scaleFactor = 50 + map(avgAmplitude, 0, 1, 0, 50);
     
-        // Center the drawing
-        translate(width / 2, height / 2 + 50); // Adjust vertical position to better view the heart
-        rotateY(frameCount * 0.01f); // Continuous rotation for dynamic effect
+        // Center the drawing and scale
+        translate(width / 2, height / 2);
+        rotateY(frameCount * 0.01f);
     
-        // Heart top parts - two overlapping spheres
+        // Color and shape settings
         noStroke();
         fill(255, 0, 0); // Red color for the heart
+    
+        // Top part of the heart using two spheres
         pushMatrix();
-        translate(-30, 0, 0); // Adjust positioning to overlap spheres
-        sphere(scaleFactor);
-        popMatrix();
-        pushMatrix();
-        translate(30, 0, 0); // Adjust positioning to overlap spheres
-        sphere(scaleFactor);
+        translate(-scaleFactor * 0.5f, 0, 0);
+        sphere(scaleFactor * 0.6f);
         popMatrix();
     
-        // Heart bottom part - use a rotated ellipsoid to simulate a cone
         pushMatrix();
-        rotateX(PI / 2); // Rotate to point the ellipsoid downwards
-        translate(0, scaleFactor, 0);
-        scale(1f, 2.5f, 1f); // Stretch the ellipsoid to make it more cone-like
-        sphere(scaleFactor);
+        translate(scaleFactor * 0.5f, 0, 0);
+        sphere(scaleFactor * 0.6f);
         popMatrix();
+    
+        // Bottom part of the heart using a triangle fan
+        beginShape(TRIANGLE_FAN);
+        vertex(0, scaleFactor);  // Apex of the heart
+        float angleStep = TWO_PI / 10; // Density of the fan points
+        for (float angle = -PI/4; angle < 5 * PI / 4; angle += angleStep) {
+            float x = cos(angle) * scaleFactor * 0.75f;
+            float y = sin(angle) * scaleFactor * 0.75f;
+            vertex(x, y, 0);
+        }
+        // Close the shape
+        vertex(cos(-PI/4) * scaleFactor * 0.75f, sin(-PI/4) * scaleFactor * 0.75f, 0);
+        endShape();
     }
+    
     
     
     
