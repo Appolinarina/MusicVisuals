@@ -5,6 +5,8 @@ import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import processing.core.PApplet;
 import processing.core.PVector;
+import processing.core.*;
+
 
 public class EC extends PApplet {
     Minim minim;
@@ -12,12 +14,14 @@ public class EC extends PApplet {
     AudioBuffer ab;
     int canvasWidth = 768;
     int canvasHeight = 768;
+
     PShape heartModel;
+
 
     public void settings() {
         size(canvasWidth, canvasHeight, P3D); // Use P3D renderer
         smooth(8);
-
+        
     }
 
     public void setup() {
@@ -25,8 +29,8 @@ public class EC extends PApplet {
         track = minim.loadFile("../data/Heartbeat.mp3", 2048);
         track.loop();
         ab = track.mix;
-        heartModel = loadShape("heartObject.obj");  // Make sure the file name matches
-        heartModel.scale(0.1);  // Adjust the scale as needed
+        // Load the 3D model
+        heartModel = loadShape("MusicVisuals/java/src/C22304291/heartObject.obj");
     }
 
     public void draw() {
@@ -48,33 +52,9 @@ public class EC extends PApplet {
         translate(width / 2, height / 2);
         rotateY(frameCount * 0.01f);
     
-        // Color and shape settings
-        noStroke();
-        fill(255, 0, 0); // Red color for the heart
-    
-        // Top part of the heart using two spheres
-        pushMatrix();
-        translate(-scaleFactor * 0.5f, 0, 0);
-        sphere(scaleFactor * 0.6f);
-        popMatrix();
-    
-        pushMatrix();
-        translate(scaleFactor * 0.5f, 0, 0);
-        sphere(scaleFactor * 0.6f);
-        popMatrix();
-    
-        // Bottom part of the heart using a triangle fan
-        beginShape(TRIANGLE_FAN);
-        vertex(0, scaleFactor);  // Apex of the heart
-        float angleStep = TWO_PI / 10; // Density of the fan points
-        for (float angle = -PI/4; angle < 5 * PI / 4; angle += angleStep) {
-            float x = cos(angle) * scaleFactor * 0.75f;
-            float y = sin(angle) * scaleFactor * 0.75f;
-            vertex(x, y, 0);
-        }
-        // Close the shape
-        vertex(cos(-PI/4) * scaleFactor * 0.75f, sin(-PI/4) * scaleFactor * 0.75f, 0);
-        endShape();
+        // Display the heart model with scaling based on audio
+        scale(scaleFactor * 10); // Adjust scaling factor as needed
+        shape(heartModel);
     }
     
     
