@@ -51,6 +51,9 @@ public class EC extends PApplet {
         // Center the drawing and scale
         translate(width / 2, height / 2);
         rotateY(frameCount * 0.01f);
+
+        // Rotate the model 180 degrees around the X-axis to flip it
+        rotateX(PI);
     
         // Display the heart model with scaling based on audio
         scale(scaleFactor * 10); // Adjust scaling factor as needed
