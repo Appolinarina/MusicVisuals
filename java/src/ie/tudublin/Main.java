@@ -10,7 +10,7 @@ public class Main{
         String[] a = { "MAIN" };
         //processing.core.PApplet.runSketch(a, new PP());
         processing.core.PApplet.runSketch(a, new FA());
-        // processing.core.PApplet.runSketch(a, new ac());
+        processing.core.PApplet.runSketch(a, new ac());
     }
 
     public static void main(String[] args) {
