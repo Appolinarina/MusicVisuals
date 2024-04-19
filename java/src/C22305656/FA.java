@@ -12,6 +12,7 @@ public class FA extends PApplet {
     private PShape model;
 
     String audioFilePath;
+    float rotationAngle = 0; 
 
     public FA() {
         this.audioFilePath = "java/data/Heartbeat.mp3"; 
@@ -45,29 +46,36 @@ public class FA extends PApplet {
         background(0);
         drawWaveVisualisation(player);
     
-        // Analyze spectrum
+      
         fft.forward(player.mix);
     
-        // Calculate average amplitude of certain frequency bands
-        float low = fft.getBand(50);  // Adjust frequency bands as needed
+        
+        float low = fft.getBand(50);  
         float mid = fft.getBand(500);
         float high = fft.getBand(2000);
     
-        // Determine color based on average amplitude
-        float hue = map(high, 0, 1, 0, 255);  // Use 'high' or other bands depending on your preference
-        model.setFill(color(hue, 255, 255));
+        
+        float hue = map(high, 0, 1, 0, 255);
     
         // Scale and position the model
-        float scaleValue = map(mid, 0, 1.0f, 0.5f, 2.0f); 
-        float rotationValue = map(low, 0, 1.0f, -PI, PI); 
+        float scaleValue = map(mid, 0, 1.0f, 0.5f, 2.0f);
+    
+        // Update rotation angle
+        rotationAngle += 0.01; 
     
         pushMatrix();
         translate(width / 2, height / 2); // Center of the screen
-        rotateY(rotationValue); // Rotate around Y-axis
-        scale(scaleValue); // Scale the model dynamically based on audio amplitude
-        shape(model); // Display the model
+        rotateY(rotationAngle); // Rotate around Y-axis
+        scale(scaleValue); 
+    
+    
+        fill(hue, 255, 255); // Set color based on amplitude
+        noStroke(); // Disable stroke for smooth appearance
+        shape(model); // Draw the model shape
+    
         popMatrix();
     }
+    
     
 
     public void drawWaveVisualisation(AudioPlayer music) {
