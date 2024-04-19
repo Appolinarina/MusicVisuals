@@ -82,6 +82,9 @@ public class FA extends PApplet {
     
         float orbValue = 0;
         float dotsValue = 0;
+        
+        float quarterWidth = width / 4;
+        float quarterHeight = height / 4;
     
         for (int i = 0; i < music.bufferSize() - 1; i++) {
             // orb calculations
@@ -96,23 +99,35 @@ public class FA extends PApplet {
     
             float hue = map(i, 0, music.bufferSize(), 0, 255);
     
-            // draw orb
-            fill(hue, 255, 255);
-            ellipse(orbX + width * 0.1f, orbY + height * 0.1f, music.left.get(i) * 5, music.left.get(i) * 5);
-            fill(hue, 255, 255);
-            rect(orbX + width * 0.8f, orbY + height * 0.1f, music.right.get(i) * 5, music.left.get(i) * 5);
+            // draw orbs and dots in each quadrant
+            drawOrb(orbX + quarterWidth, orbY + quarterHeight, hue, music.left.get(i));
+            drawOrb(orbX + 3 * quarterWidth, orbY + quarterHeight, hue, music.left.get(i));
+            drawOrb(orbX + quarterWidth, orbY + 3 * quarterHeight, hue, music.left.get(i));
+            drawOrb(orbX + 3 * quarterWidth, orbY + 3 * quarterHeight, hue, music.left.get(i));
     
-            // draw dots
-            fill(hue, 255, 255);
-            rect(dotsX + width * 0.1f, dotsY + height * 0.8f, music.left.get(i) * 10, music.left.get(i) * 5);
-            fill(hue, 255, 255);
-            rect(dotsX + width * 0.8f, dotsY + height * 0.8f, music.right.get(i) * 5, music.right.get(i) * 10);
+            drawDot(dotsX + quarterWidth, dotsY + quarterHeight, hue, music.left.get(i));
+            drawDot(dotsX + 3 * quarterWidth, dotsY + quarterHeight, hue, music.left.get(i));
+            drawDot(dotsX + quarterWidth, dotsY + 3 * quarterHeight, hue, music.left.get(i));
+            drawDot(dotsX + 3 * quarterWidth, dotsY + 3 * quarterHeight, hue, music.left.get(i));
         }
     
         // update orb and dots values
         orbValue += 0.4;
         dotsValue += 0.008;
     }
+    
+    // Function to draw orbs
+    void drawOrb(float x, float y, float hue, float size) {
+        fill(hue, 255, 255);
+        ellipse(x, y, size * 5, size * 5);
+    }
+    
+    // Function to draw dots
+    void drawDot(float x, float y, float hue, float size) {
+        fill(hue, 255, 255);
+        rect(x, y, size * 10, size * 5);
+    }
+    
 
     public static void main(String[] args) {
         String[] a = { "FA" };
