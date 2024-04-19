@@ -28,9 +28,9 @@ class Particle {
         lifespan -= 0.5;
     }
 
-    void display() {
-        parent.stroke(255, lifespan);
-        parent.fill(255, lifespan); // White and fading
+    void display(int color) {
+        parent.fill(color, lifespan); // Use the passed color with transparency
+        parent.noStroke();
         parent.ellipse(position.x, position.y, radius, radius);
     }
 
@@ -63,12 +63,12 @@ class ParticleSystem {
         particles.add(new Particle(origin, parent, spread));
     }
 
-    void run() {
+    void run(int color) {
         for (int i = particles.size() - 1; i >= 0; i--) {
             Particle p = particles.get(i);
             p.update();
+            p.display(color); // Pass color to each particle
             p.checkEdges();
-            p.display();
             if (p.isDead()) {
                 particles.remove(i);
             }

@@ -21,11 +21,13 @@ public class EC extends PApplet {
 
     public void settings() {
         size(canvasWidth, canvasHeight, P3D); // Use P3D renderer
+        
         smooth(8);
     }
     
 
     public void setup() {
+        colorMode(PApplet.HSB, 360, 100, 100);
         minim = new Minim(this);
         track = minim.loadFile("../data/Heartbeat.mp3", 2048);
         if (track == null) {
@@ -127,7 +129,7 @@ public class EC extends PApplet {
         scale(scaleFactor);  // Apply scaling transformation
 
         // Set color based on audio
-        int pinkColor = lerpColor(color(255, 182, 193), color(139, 0, 0), map(avgAmplitude, 0, 1, 0, 1));
+        int pinkColor = lerpColor(color(350, 29, 100), color(255, 100, 40), map(avgAmplitude, 0, 1, 0, 1));
         setShapeColor(heartModel, pinkColor);
 
         // Draw the heart model
@@ -135,9 +137,17 @@ public class EC extends PApplet {
         popMatrix();  
 
         
+        fft.forward(track.mix);  // Perform FFT on the current audio mix
+        float avg = 0; // Average amplitude
+        for (int i = 0; i < fft.specSize(); i++) {
+            avg += fft.getBand(i);
+        }
+        avg /= fft.specSize();
+
+        int snowColor = color(map(avg, 0, 5, 330, 270), 100, 100); // Mapping avg to a blue scale
+
         ps.addParticle();
-       
-        ps.run();
+        ps.run(snowColor);
         
     }
     
