@@ -42,6 +42,8 @@ public class EC extends PApplet {
             println("Failed to load heart model.");
             exit(); // Exit if model cannot be loaded
         }
+        heartModel.rotate(PI);
+        
 
         fft = new FFT(track.bufferSize(), track.sampleRate());
         // Initialize ParticleSystem
@@ -121,8 +123,7 @@ public class EC extends PApplet {
         // Prepare to draw the heart model
         pushMatrix();  // Isolate transformations applied to the heart model
         translate(width / 2, height / 2); // Center the heart model
-        rotateX(PI);  // Adjust orientation if necessary
-        rotateY(PI);  // Rotate around the y-axis
+        
 
         // Increment the rotation angle for smooth animation
         rotationAngle += 0.05;  // Control speed of rotation
