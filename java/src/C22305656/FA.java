@@ -3,11 +3,13 @@ package C22305656;
 import processing.core.PApplet;
 import ddf.minim.*;
 import ddf.minim.analysis.*;
+import processing.core.PShape;
 
 public class FA extends PApplet {
     private Minim minim;
     private AudioPlayer player;
     private FFT fft;
+    private PShape model;
 
     String audioFilePath;
 
@@ -20,7 +22,7 @@ public class FA extends PApplet {
     }
 
     public void settings() {
-        size(800, 600);
+        size(800, 600, P3D); // Set the renderer to P3D for 3D rendering
     }
 
     public void setup() {
@@ -28,11 +30,31 @@ public class FA extends PApplet {
         player = minim.loadFile(audioFilePath, 1024);
         player.play();
         fft = new FFT(player.bufferSize(), player.sampleRate());
+
+       
+        model = loadShape("C22305656/Ned.obj");
+
+        // Correct the orientation of the model
+        model.rotateX(PI); 
+
+        // Scale the model
+        model.scale(5); // Scale up the model 
     }
 
     public void draw() {
         background(0);
         drawWaveVisualisation(player);
+
+        // Scale and position the model
+        float scaleValue = map(player.left.level(), 0, 1.0f, 0.5f, 2.0f); 
+        float rotationValue = map(player.right.level(), 0, 1.0f, -PI, PI); 
+
+        pushMatrix();
+        translate(width / 2, height / 2); // Center of the screen
+        rotateY(rotationValue); // Rotate around Y-axis
+        scale(scaleValue); // Scale the model dynamically based on audio amplitude
+        shape(model); // Display the model
+        popMatrix();
     }
 
     public void drawWaveVisualisation(AudioPlayer music) {
@@ -73,14 +95,6 @@ public class FA extends PApplet {
         orbValue += 0.4;
         dotsValue += 0.008;
     }
-    
-    
-
-    // variables for orb and dots colors
-    private float orbColor = 0;
-    private float dotsColor = 0;
-    private float originalOrbColor = 255;
-    private float originalDotsColor = 255;
 
     public static void main(String[] args) {
         String[] a = { "FA" };
