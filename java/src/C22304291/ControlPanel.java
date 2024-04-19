@@ -5,6 +5,7 @@ public class ControlPanel {
     PApplet parent;
     Button playButton;
     Button stopButton;
+    Button rewindButton;
     boolean isSidebarVisible;
     float sidebarX;  // X position of the sidebar
     float sidebarWidth;
@@ -12,12 +13,14 @@ public class ControlPanel {
 
     public ControlPanel(PApplet p) {
         this.parent = p;
-        sidebarWidth = 200; // Width of the sidebar
-        sidebarX = -sidebarWidth; // Start hidden
+        sidebarWidth = 200;  // Width of the sidebar
+        sidebarX = -sidebarWidth;  // Start hidden
         isSidebarVisible = false;
-        playButton = new Button(parent, "Play", 50, 500, 100, 40);
-        stopButton = new Button(parent, "Stop", 50, 550, 100, 40);
-        arrowButton = new Button(parent, ">", 0, 50, 20, 40);
+        int baseY = parent.height / 2;  // Starting y position at the middle of the screen
+        playButton = new Button(parent, "Play", 50, baseY - 40, 100, 40);
+        stopButton = new Button(parent, "Stop", 50, baseY, 100, 40);
+        rewindButton = new Button(parent, "Rewind", 50, baseY + 40, 100, 40);
+        arrowButton = new Button(parent, "<", 10, 50, 20, 40);  
     }
 
     public void display() {
@@ -33,6 +36,7 @@ public class ControlPanel {
             stopButton.x = (int) sidebarX + 50;
             playButton.display();
             stopButton.display();
+            rewindButton.display();
         }
     
         // Arrow button should always be displayed
@@ -57,21 +61,19 @@ public class ControlPanel {
     }
 
     public void checkMousePressed() {
-        System.out.println("Mouse X: " + parent.mouseX + " Mouse Y: " + parent.mouseY);  // Debug mouse position
-    
         if (arrowButton.over(parent.mouseX, parent.mouseY)) {
-            System.out.println("Toggling sidebar");
             toggleSidebar();
         } else if (isSidebarVisible) {
             if (playButton.over(parent.mouseX, parent.mouseY)) {
-                System.out.println("Play button pressed");
                 ((EC)parent).playMusic();
             } else if (stopButton.over(parent.mouseX, parent.mouseY)) {
-                System.out.println("Stop button pressed");
-                ((EC)parent).stopMusic();
+                ((EC)parent).pauseMusic();
+            } else if (rewindButton.over(parent.mouseX, parent.mouseY)) {
+                ((EC)parent).rewindMusic();
             }
         }
     }
+    
     
 
     class Button {

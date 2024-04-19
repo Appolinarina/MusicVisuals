@@ -163,13 +163,19 @@ public class EC extends PApplet {
         }
     }
 
-    public void stopMusic() {
+    public void pauseMusic() {
         if (track.isPlaying()) {
             track.pause(); // Pause the music
             //track.cue(0);  // Rewind to the start of the track
         }
     }
 
+    public void rewindMusic()
+    {
+        if (track.isPlaying()) {
+            track.cue(0);  // Rewind to the start of the track
+        }
+    }
 
     
     
