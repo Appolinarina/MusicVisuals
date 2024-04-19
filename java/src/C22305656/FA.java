@@ -13,6 +13,7 @@ public class FA extends PApplet {
 
     String audioFilePath;
     float rotationAngle = 0; 
+    float rotationSpeed = 0;
 
     public FA() {
         this.audioFilePath = "java/data/Heartbeat.mp3"; 
@@ -35,48 +36,42 @@ public class FA extends PApplet {
        
         model = loadShape("C22305656/Ned.obj");
 
-        // Correct the orientation of the model
         model.rotateX(PI); 
 
         // Scale the model
-        model.scale(5); // Scale up the model 
+        model.scale(1); 
     }
 
     public void draw() {
         background(0);
         drawWaveVisualisation(player);
-    
-      
+
+        // Analyze spectrum
         fft.forward(player.mix);
-    
+
+        // Get amplitude values from specific frequency bands
+        float bassAmplitude = fft.getBand(50);  // Adjust frequency bands as needed
+        float midAmplitude = fft.getBand(500);
+        float trebleAmplitude = fft.getBand(2000);
+
         
-        float low = fft.getBand(50);  
-        float mid = fft.getBand(500);
-        float high = fft.getBand(2000);
-    
-        
-        float hue = map(high, 0, 1, 0, 255);
-    
-        // Scale and position the model
-        float scaleValue = map(mid, 0, 1.0f, 0.5f, 2.0f);
-    
-        // Update rotation angle
-        rotationAngle += 0.01; 
-    
+        float overallAmplitude = bassAmplitude + midAmplitude + trebleAmplitude;
+
+        float rotationSpeed = map(overallAmplitude, 0.0f, 1.0f, -0.05f, 0.05f); 
+
+        rotationAngle += rotationSpeed;
+
         pushMatrix();
         translate(width / 2, height / 2); // Center of the screen
         rotateY(rotationAngle); // Rotate around Y-axis
-        scale(scaleValue); 
-    
-    
-        fill(hue, 255, 255); // Set color based on amplitude
+        scale(5); // Scale the model 
+
+        fill(255); // Set a fixed color
         noStroke(); // Disable stroke for smooth appearance
         shape(model); // Draw the model shape
-    
+
         popMatrix();
     }
-    
-    
 
     public void drawWaveVisualisation(AudioPlayer music) {
         colorMode(HSB, 255); 
