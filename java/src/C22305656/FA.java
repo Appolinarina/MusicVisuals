@@ -45,33 +45,35 @@ public class FA extends PApplet {
     public void draw() {
         background(0);
         drawWaveVisualisation(player);
-
+    
         // Analyze spectrum
         fft.forward(player.mix);
-
+    
         // Get amplitude values from specific frequency bands
-        float bassAmplitude = fft.getBand(50);  // Adjust frequency bands as needed
+        float bassAmplitude = fft.getBand(50);  
         float midAmplitude = fft.getBand(500);
         float trebleAmplitude = fft.getBand(2000);
-
-        
+    
+        // Calculate overall amplitude
         float overallAmplitude = bassAmplitude + midAmplitude + trebleAmplitude;
-
+    
+        // Map overall amplitude to rotation speed
         float rotationSpeed = map(overallAmplitude, 0.0f, 1.0f, -0.05f, 0.05f); 
-
         rotationAngle += rotationSpeed;
+    
 
+        float hue = map(overallAmplitude, 0.0f, 1.0f, 0, 255); 
+    
+        model.setFill(color(hue, 255, 255));
+    
         pushMatrix();
         translate(width / 2, height / 2); // Center of the screen
         rotateY(rotationAngle); // Rotate around Y-axis
         scale(5); // Scale the model 
-
-        fill(255); // Set a fixed color
-        noStroke(); // Disable stroke for smooth appearance
         shape(model); // Draw the model shape
-
         popMatrix();
     }
+    
 
     public void drawWaveVisualisation(AudioPlayer music) {
         colorMode(HSB, 255); 
