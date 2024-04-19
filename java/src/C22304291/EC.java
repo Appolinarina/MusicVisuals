@@ -17,7 +17,8 @@ public class EC extends PApplet {
     int canvasHeight = 768;
     PShape heartModel;
     ParticleSystem ps;
-    float rotationAngle = 0.0f;  // Rotation angle in radians
+    float rotationAngle = 0.0f;
+    ControlPanel controlPanel;
 
     public void settings() {
         size(canvasWidth, canvasHeight, P3D); // Use P3D renderer
@@ -45,6 +46,7 @@ public class EC extends PApplet {
         fft = new FFT(track.bufferSize(), track.sampleRate());
         // Initialize ParticleSystem
         ps = new ParticleSystem(new PVector(width / 2, 50), this,600);
+        controlPanel = new ControlPanel(this);
 
     }
 
@@ -57,6 +59,7 @@ public class EC extends PApplet {
 
     public void draw() {
         background(0);
+        controlPanel.display();
         lights();
     
         // Set up drawing parameters for the waveform
@@ -150,7 +153,24 @@ public class EC extends PApplet {
         ps.run(snowColor);
         
     }
-    
+    public void mousePressed() {
+        controlPanel.checkMousePressed();
+    }
+    // In EC class
+    public void playMusic() {
+        if (!track.isPlaying()) {
+            track.play();
+        }
+    }
+
+    public void stopMusic() {
+        if (track.isPlaying()) {
+            track.pause(); // Pause the music
+            //track.cue(0);  // Rewind to the start of the track
+        }
+    }
+
+
     
     
 
