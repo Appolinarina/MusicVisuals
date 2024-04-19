@@ -42,7 +42,7 @@ public class EC extends PApplet {
 
         fft = new FFT(track.bufferSize(), track.sampleRate());
         // Initialize ParticleSystem
-        ps = new ParticleSystem(new PVector(width / 2, 50), this,400);
+        ps = new ParticleSystem(new PVector(width / 2, 50), this,600);
 
     }
 
@@ -69,7 +69,7 @@ public class EC extends PApplet {
         float yOffsetTop = height * 0.25f;
     
         
-        pushMatrix(); // Save current transformation matrix
+        pushMatrix(); 
         translate(0, 0, -50); // Move waveform back in Z-axis to appear behind the heart
     
         for (int i = 0; i < ab.size() - 1; i++) {
@@ -84,10 +84,11 @@ public class EC extends PApplet {
             line(x1, y1, x2, y2);
         }
     
-        popMatrix(); // Restore previous transformation matrix
+        popMatrix(); 
+
         // Draw waveform at the top behind the heart, mirroring the bottom waveform
         pushMatrix();
-        translate(0, 0, -50); // Move waveform back in Z-axis
+        translate(0, 0, -50); 
         for (int i = 0; i < ab.size() - 1; i++) {
             float x1 = map(i, 0, ab.size(), 0, width);
             float y1 = map(ab.get(i), -1, 1, yOffsetTop - yScale, yOffsetTop + yScale);
@@ -106,13 +107,11 @@ public class EC extends PApplet {
         for (float v : ab.toArray()) {
             avgAmplitude += abs(v);
         }
-        avgAmplitude /= ab.size();  // Calculate average amplitude for this frame
 
-        // Draw particles if amplitude conditions are met
-        if (avgAmplitude > 0.5) {  // Threshold for spawning particles can be adjusted
-            ps.addParticle();
-        }
-        ps.run();
+        // Calculate average amplitude
+        avgAmplitude /= ab.size();  
+
+        
 
         // Prepare to draw the heart model
         pushMatrix();  // Isolate transformations applied to the heart model
@@ -133,9 +132,12 @@ public class EC extends PApplet {
 
         // Draw the heart model
         shape(heartModel);
-        popMatrix();  // Restore previous transformation state to not affect other elements
+        popMatrix();  
 
         
+        ps.addParticle();
+       
+        ps.run();
         
     }
     
