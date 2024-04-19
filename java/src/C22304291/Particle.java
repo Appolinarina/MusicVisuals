@@ -46,7 +46,7 @@ class Particle {
 
     void display() {
         parent.stroke(255, lifespan);
-        parent.noFill();
+        parent.fill(255, lifespan);
         parent.ellipse(position.x, position.y, radius * 0.25f, radius * 0.25f); // Draw using radius
     }
 
