@@ -5,6 +5,7 @@ import ddf.minim.analysis.BeatDetect;
 import processing.core.PApplet;
 import ddf.minim.*;
 
+
 public class ac extends PApplet {
     Minim minim;
     BeatDetect beat;
