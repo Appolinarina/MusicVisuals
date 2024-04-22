@@ -57,6 +57,7 @@ public class PP extends PApplet {
 
     float off = 0;
 
+
     float lerpedAvg = 0;
     float hue;
     public void draw(){
@@ -80,7 +81,7 @@ public class PP extends PApplet {
         }
         float avg = tot / ab.size();
         lerpedAvg = lerp(lerpedAvg, avg, 0.1f);
-        
+
         for (int i = 0; i < ab.size(); i ++)
                 {
                     lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
