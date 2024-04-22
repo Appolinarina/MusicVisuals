@@ -2,6 +2,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AC",
+            "request": "launch",
+            "mainClass": "C22488994.AC",
+            "projectName": "java"
+        },
+        {
+            "type": "java",
+            "name": "EC",
+            "request": "launch",
+            "mainClass": "C22304291.EC",
+            "projectName": "java"
+        },
+        {
+            "type": "java",
+            "name": "FA",
+            "request": "launch",
+            "mainClass": "C22305656.FA",
+            "projectName": "java"
+        },
+        {
+            "type": "java",
             "name": "ac",
             "request": "launch",
             "mainClass": "C22488994.ac",
