@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "EC",
+            "request": "launch",
+            "mainClass": "C22304291.EC",
+            "projectName": "java"
+        },
+        {
+            "type": "java",
             "name": "ac",
             "request": "launch",
             "mainClass": "C22488994.ac",
