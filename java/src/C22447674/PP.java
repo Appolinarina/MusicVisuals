@@ -36,7 +36,7 @@ public class PP extends PApplet {
         // Uncomment this to use the microphone
         // ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
         // ab = ai.mix; 
-        ap = minim.loadFile("../data/Heartbeat.mp3", 1024);
+        ap = minim.loadFile("java/data/Heartbeat.mp3", 1024);
         ap.play();
         ab = ap.mix;
         colorMode(HSB);
