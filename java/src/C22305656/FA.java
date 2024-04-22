@@ -15,6 +15,8 @@ public class FA extends PApplet {
     float rotationAngle = 0; 
     float rotationSpeed = 0;
 
+    boolean isPaused = false; 
+
     public FA() {
         this.audioFilePath = "java/data/Heartbeat.mp3"; 
     }
@@ -33,39 +35,40 @@ public class FA extends PApplet {
         player.play();
         fft = new FFT(player.bufferSize(), player.sampleRate());
 
-       
         model = loadShape("C22305656/Ned.obj");
-
         model.rotateX(PI); 
 
-        // Scale the model
         model.scale(1); 
     }
 
     public void draw() {
         background(0);
-        drawWaveVisualisation(player);
-    
-        // Analyze spectrum
-        fft.forward(player.mix);
-    
-        // Get amplitude values from specific frequency bands
-        float bassAmplitude = fft.getBand(50);  
-        float midAmplitude = fft.getBand(500);
-        float trebleAmplitude = fft.getBand(2000);
-    
-        // Calculate overall amplitude
-        float overallAmplitude = bassAmplitude + midAmplitude + trebleAmplitude;
-    
-        // Map overall amplitude to rotation speed
-        float rotationSpeed = map(overallAmplitude, 0.0f, 1.0f, -0.05f, 0.05f); 
-        rotationAngle += rotationSpeed;
-    
+        
+        float overallAmplitude = 0;
+
+        // Only update rotation when audio is not paused
+        if (!isPaused) {
+            drawWaveVisualisation(player);
+        
+            // Analyze spectrum
+            fft.forward(player.mix);
+        
+            // Get amplitude values from specific frequency bands
+            float bassAmplitude = fft.getBand(50);  
+            float midAmplitude = fft.getBand(500);
+            float trebleAmplitude = fft.getBand(2000);
+        
+            // Calculate overall amplitude
+            overallAmplitude = bassAmplitude + midAmplitude + trebleAmplitude;
+        
+            // Map overall amplitude to rotation speed
+            float rotationSpeed = map(overallAmplitude, 0.0f, 1.0f, -0.05f, 0.05f); 
+            rotationAngle += rotationSpeed;
+        }
 
         float hue = map(overallAmplitude, 0.0f, 1.0f, 0, 255); 
-    
         model.setFill(color(hue, 255, 255));
-    
+        
         pushMatrix();
         translate(width / 2, height / 2); // Center of the screen
         rotateY(rotationAngle); // Rotate around Y-axis
@@ -73,11 +76,9 @@ public class FA extends PApplet {
         shape(model); // Draw the model shape
         popMatrix();
     }
-    
 
     public void drawWaveVisualisation(AudioPlayer music) {
         colorMode(HSB, 255); 
-    
         noStroke();
     
         float orbValue = 0;
@@ -85,7 +86,7 @@ public class FA extends PApplet {
         
         float quarterWidth = width / 4;
         float quarterHeight = height / 4;
-    
+        
         for (int i = 0; i < music.bufferSize() - 1; i++) {
             // orb calculations
             float orbAngle = sin(i + orbValue) * 300;
@@ -127,7 +128,20 @@ public class FA extends PApplet {
         fill(hue, 255, 255);
         rect(x, y, size * 10, size * 5);
     }
-    
+
+    public void keyPressed() {
+        if (key == ' ') { // check if space bar is pressed
+            if (isPaused) {
+                player.play(); // if audio is paused, resume 
+            } else {
+                player.pause(); // if audio is playing, pause 
+            }
+            isPaused = !isPaused; 
+        } else if (key == '1') { // check if '1' is pressed
+            player.rewind(); // rewind the audio to the beginning
+            rotationAngle = 0; // reset the rotation angle 
+        }
+    }
 
     public static void main(String[] args) {
         String[] a = { "FA" };
