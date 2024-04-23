@@ -4,7 +4,7 @@ import ddf.minim.Minim;
 import ddf.minim.analysis.BeatDetect;
 import processing.core.PApplet;
 import ddf.minim.*;
-
+import C22488994.LifeBoard;
 
 public class ac extends PApplet {
     Minim minim;
