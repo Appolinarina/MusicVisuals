@@ -23,13 +23,11 @@ FA.java (Fatima Alubaidi, C22305656) - This code creates a 3D visualisation with
 ac.java (Andrew Carty, C22488994) - This code recreates conways game of life like from the labs that we did. The difference is that this one loads the audio file and then syncs the changes to whenever there is a beat detected. it then changes the colour of the cells aswell
 
 EC.java (Aileen Coliban, C22304291):
-This code combines audio processing with graphical visualization in a Processing environment. It loads and analyzes an audio track using Minim, utilizing FFT data to control a 3D model's rotation and a particle system that reacts dynamically to the music. Users can interact through a control panel to manage audio playback.
-
+  This code combines audio processing with graphical visualization in a Processing environment. It loads and analyzes an audio track using Minim, utilizing FFT data to control a 3D model's rotation and a particle system that reacts dynamically to the music. Users can interact through a    control panel to manage audio playback.
 Particle.java (Particle System):
-This class defines particles with attributes such as position, velocity, and acceleration. These particles visually interpret the audio by changing movement and appearance based on the sound's amplitude and frequency, providing a dynamic audio-visual experience.
-
+  This class defines particles with attributes such as position, velocity, and acceleration. These particles visually interpret the audio by changing movement and appearance based on the sound's amplitude and frequency, providing a dynamic audio-visual experience.
 ControlPanel.java (User Interface):
-The ControlPanel class manages a user interface with playback controls (play, stop, rewind) and a toggleable sidebar for additional settings. User inputs control the sidebar’s visibility, enhancing the application's interactivity.
+  The ControlPanel class manages a user interface with playback controls (play, stop, rewind) and a toggleable sidebar for additional settings. User inputs control the sidebar’s visibility, enhancing the application's interactivity.
 
 # What I am most proud of in the assignment
 
