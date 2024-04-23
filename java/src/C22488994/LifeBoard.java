@@ -50,6 +50,8 @@ public class LifeBoard {
         next = temp;
     }
 
+    
+
     public int countCellsAround(int row, int col) {
         int count = 0;
         for (int i = row - 1; i <= row + 1; i++) {
@@ -76,12 +78,12 @@ public class LifeBoard {
         }
     }
 
-    public void render() {
+    public void render(int r, int g, int b) {
         parent.background(0);
         for (int row = 0; row < size; row++) {
             for (int col = 0; col < size; col++) {
                 if (board[row][col]) {
-                    parent.fill(255); // Set fill color to white for live cells
+                    parent.fill(r, g, b); // Fill color with parameters
                 } else {
                     parent.fill(0); // Set fill color to black for dead cells
                 }
