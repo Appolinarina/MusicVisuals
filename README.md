@@ -20,7 +20,7 @@ Student Number: C22488994,	C22447674,		C22304291,		C22305656
 # How it works
 FA.java (Fatima Alubaidi, C22305656) - This code creates a 3D visualisation with a rotating model (Ned.obj) synced to the music. It loads an audio file, analyses its frequency spectrum to determine rotation speed, and displays a model rotating around the y-axis. The code generates visualisations of orbs and dots that pulsate in response to the audio's waveform. You can pause/resume the audio with the spacebar and rewind it to the beginning by pressing '1'.
 
-
+ac.java (Andrew Carty, C22488994) - This code recreates conways game of life like from the labs that we did. The difference is that this one loads the audio file and then syncs the changes to whenever there is a beat detected. it then changes the colour of the cells aswell
 # What I am most proud of in the assignment
 
 :3
