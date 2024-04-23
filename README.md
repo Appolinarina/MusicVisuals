@@ -13,9 +13,13 @@ Student Number: C22488994,	C22447674,		C22304291,		C22305656
 
 # Description of the assignment
 
+
 # Instructions
 
+
 # How it works
+FA.java (Fatima Alubaidi, C22305656) - This code creates a 3D visualisation with a rotating model (Ned.obj) synced to the music. It loads an audio file, analyses its frequency spectrum to determine rotation speed, and displays a model rotating around the y-axis. The code generates visualisations of orbs and dots that pulsate in response to the audio's waveform. You can pause/resume the audio with the spacebar and rewind it to the beginning by pressing '1'.
+
 
 # What I am most proud of in the assignment
 
