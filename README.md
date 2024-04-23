@@ -31,6 +31,8 @@ ControlPanel.java (User Interface):
 
 # What I am most proud of in the assignment
 
+Aileen Coliban, C22304291:
+I am especially proud of achieving a seamless integration of audio analysis with real-time graphical visualizations, a highlight being the EC class which synchronizes 3D model rotations and particle dynamics with live audio. This required a deep understanding of both Minim for audio processing and Processing for graphics. Additionally, the Particle class creatively applies vector mathematics to adjust particle behavior based on audio data. The ControlPanel class enhances user interaction by seamlessly integrating audio controls with visual elements. This project not only pushed my technical skills but also successfully merged sound with visual art, creating a functional and engaging experience.
 
 
 :3
