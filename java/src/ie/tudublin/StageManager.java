@@ -17,8 +17,8 @@ public class StageManager {
         parent.textSize(20);
         parent.fill(255);
         parent.text("Press keys 1 to 4 to switch between sketches:", 10, 30);
-        parent.text("1: FA (Frequency Analysis)", 30, 60);
-        parent.text("2: EC (Heartbeat Visualization)", 30, 90);
+        parent.text("1: FA (Man in space)", 30, 60);
+        parent.text("2: EC (Heartbeat Visualisation)", 30, 90);
         parent.text("3: PP (Particle Playground)", 30, 120);
         parent.text("4: AC (Game of Life)", 30, 150);
     }
