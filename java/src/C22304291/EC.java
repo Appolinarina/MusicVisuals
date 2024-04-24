@@ -30,14 +30,14 @@ public class EC extends PApplet {
     public void setup() {
         colorMode(PApplet.HSB, 360, 100, 100);
         minim = new Minim(this);
-        track = minim.loadFile("../data/Heartbeat.mp3", 2048);
+        track = minim.loadFile("java/data/Heartbeat.mp3", 2048);
         if (track == null) {
             println("Failed to load track.");
             exit(); // Exit if track cannot be loaded
         }
         track.loop();
         ab = track.mix;
-        heartModel = loadShape("MusicVisuals/java/src/C22304291/heartObject.obj");
+        heartModel = loadShape("C22304291/heartObject.obj");
         if (heartModel == null) {
             println("Failed to load heart model.");
             exit(); // Exit if model cannot be loaded

@@ -24,7 +24,7 @@ public class ac extends PApplet {
     public void setup() {
         minim = new Minim(this);
         beat = new BeatDetect();
-        player = minim.loadFile("Heartbeat.mp3");
+        player = minim.loadFile("java/data/Heartbeat.mp3");
         player.play();
         beat.setSensitivity(300); // Adjust sensitivity for beat detection
     }
