@@ -37,3 +37,12 @@ I am especially proud of achieving a seamless integration of audio analysis with
 Andrew Carty C22488994:
 For me I am most proud of the structure and planning i put into the project. I set up plans and diagrams for how we wanted to use main, StageManager, Visual.java etc. I was proud of how i well i got the Game of life to integrate into the music. I didnt make a particularly good Game of Life Lab so I wanted to make this one better. I learned better about the processing library and the minim library and I was super happy with how much I learned.
 :3
+
+Fatima ALubaidi C22305656:
+I'm really proud of how this project combines sound and visuals. I'm proud of how the  3D model, Ned, rotates with the music's beat, which makes it more engaging to watch. The rotation speed depends on how loud different parts of the music are, so it feels like the visuals are dancing to the music. Also, the colourful orbs and dots move along with the music, making everything look more interesting. This project shows how well I can mix sound and pictures to create something cool to experience. I'm also proud of how much new stuff I learnt, such as using the different libraries. 
+
+
+
+
+
+
