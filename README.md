@@ -29,6 +29,10 @@ Particle.java (Particle System):
 ControlPanel.java (User Interface):
   The ControlPanel class manages a user interface with playback controls (play, stop, rewind) and a toggleable sidebar for additional settings. User inputs control the sidebar’s visibility, enhancing the application's interactivity.
 
+
+PP.java
+This code represents a Processing sketch that visualizes the given audio file using a 3D torus render. The audio waveform is displayed in two different manners, one: using lines drawn on all 4 edges of the screen, with the amplitude of each sample determining the length and direction of the lines, and two: the radii of the torus inside and outside. Additionally, the sketch incorporates interactive elements, such as mouse-controlled hue adjustment for the visual representation. Overall, the code gives an immersive experience for the opening of the song due to it's calm nature, the lerping torus accurately characterises the smooth and chill nature of the song.
+
 # What I am most proud of in the assignment
 
 Aileen Coliban, C22304291:
