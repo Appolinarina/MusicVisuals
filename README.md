@@ -45,6 +45,8 @@ For me I am most proud of the structure and planning i put into the project. I s
 Fatima ALubaidi C22305656:
 I'm really proud of how this project combines sound and visuals. I'm proud of how the  3D model, Ned, rotates with the music's beat, which makes it more engaging to watch. The rotation speed depends on how loud different parts of the music are, so it feels like the visuals are dancing to the music. Also, the colourful orbs and dots move along with the music, making everything look more interesting. This project shows how well I can mix sound and pictures to create something cool to experience. I'm also proud of how much new stuff I learnt, such as using the different libraries. 
 
+Polina Pereyaslavets C22447674
+What I am proud of is implementing the torus shape and bringing it to life. I had an idea in my head of a rotating torus shape with changing colors and the size depending on the amplitude of the music. I really like how the torus takes on many 'forms' depending on the amplitude - when the music is quiet, the torus is very thin, and when the beat drops, the radii of the torus start to overlap due to the high amplitude of the song, where the torus shape takes on a whole new form, which I was very proud of, as it takes up alot of the screen and feels very stimulating and immersive. I added extra features at the sides from one of the labs to complete the visual. I really enjoyed implementing this, and constantly seeing the progress of updating new features of the visual to see what it could finally become C:
 
 
 
