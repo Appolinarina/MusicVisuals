@@ -25,6 +25,7 @@ class Particle {
     void update() {
         velocity.add(acceleration);
         position.add(velocity);
+        //reduces lifespan by each frame -- used to track when the particle dies
         lifespan -= 0.5;
     }
 
@@ -60,15 +61,18 @@ class ParticleSystem {
     }
 
     void addParticle() {
+        // Adds new particles
         particles.add(new Particle(origin, parent, spread));
     }
 
     void run(int color) {
+        //Iterates backwards through the particle list to update, display, and check the edges of each particle.
         for (int i = particles.size() - 1; i >= 0; i--) {
             Particle p = particles.get(i);
             p.update();
             p.display(color); // Pass color to each particle
             p.checkEdges();
+            //check if particle is dead, removing it from the list
             if (p.isDead()) {
                 particles.remove(i);
             }

@@ -21,7 +21,7 @@ public class EC extends PApplet {
     ControlPanel controlPanel;
 
     public void settings() {
-        size(canvasWidth, canvasHeight, P3D); // Use P3D renderer
+        size(canvasWidth, canvasHeight, P3D); 
         
         smooth(8);
     }
@@ -65,17 +65,18 @@ public class EC extends PApplet {
         lights();
     
         // Set up drawing parameters for the waveform
-        stroke(255, 100); // Make waveform slightly transparent
+        stroke(255, 100);
         strokeWeight(2);
         noFill();
         
     
         // Set waveform height and position more tightly controlled
-        float yScale = height / 8; // Reducing the multiplier for height
+        float yScale = height / 8; 
         float yOffset = height * 0.75f; // Positioning the waveform lower on the screen
         float yOffsetTop = height * 0.25f;
     
         
+        // Draw waveform at the bottom behind the heart
         pushMatrix(); 
         translate(0, 0, -50); // Move waveform back in Z-axis to appear behind the heart
     
@@ -118,15 +119,13 @@ public class EC extends PApplet {
         // Calculate average amplitude
         avgAmplitude /= ab.size();  
 
-        
-
         // Prepare to draw the heart model
-        pushMatrix();  // Isolate transformations applied to the heart model
+        pushMatrix();
         translate(width / 2, height / 2); // Center the heart model
         
 
         // Increment the rotation angle for smooth animation
-        rotationAngle += 0.05;  // Control speed of rotation
+        rotationAngle += 0.05;
 
         // Apply scaling based on audio amplitude
         float scaleFactor = 200 + map(avgAmplitude, 0, 1, 0, 250);
@@ -143,6 +142,8 @@ public class EC extends PApplet {
         
         fft.forward(track.mix);  // Perform FFT on the current audio mix
         float avg = 0; // Average amplitude
+
+        // Get the intensity of the audio then computes the average 
         for (int i = 0; i < fft.specSize(); i++) {
             avg += fft.getBand(i);
         }

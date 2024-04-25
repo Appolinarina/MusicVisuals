@@ -7,16 +7,16 @@ public class ControlPanel {
     Button stopButton;
     Button rewindButton;
     boolean isSidebarVisible;
-    float sidebarX;  // X position of the sidebar
+    float sidebarX;  
     float sidebarWidth;
     Button arrowButton;
 
     public ControlPanel(PApplet p) {
         this.parent = p;
-        sidebarWidth = 200;  // Width of the sidebar
-        sidebarX = -sidebarWidth;  // Start hidden
+        sidebarWidth = 200;  
+        sidebarX = -sidebarWidth;  // Start the sidebar hidden
         isSidebarVisible = false;
-        int baseY = parent.height / 2;  // Starting y position at the middle of the screen
+        int baseY = parent.height / 2;  // Starting at the middle of the screen
         playButton = new Button(parent, "Play", 50, baseY - 40, 100, 40);
         stopButton = new Button(parent, "Stop", 50, baseY, 100, 40);
         rewindButton = new Button(parent, "Rewind", 50, baseY + 40, 100, 40);
@@ -60,9 +60,14 @@ public class ControlPanel {
         arrowButton.label = isSidebarVisible ? "<" : ">";
     }
 
+
     public void checkMousePressed() {
+        //mostly for debugging purposes 
+        //checks to see if the mouse click happened within the bounds of the arrow
         if (arrowButton.over(parent.mouseX, parent.mouseY)) {
             toggleSidebar();
+
+        //Checks if the side bar is visible
         } else if (isSidebarVisible) {
             if (playButton.over(parent.mouseX, parent.mouseY)) {
                 ((EC)parent).playMusic();
