@@ -12,15 +12,19 @@ Student Number: C22488994,	C22447674,		C22304291,		C22305656
 - Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
 
 # Description of the assignment
-
+In this assignment, we have 4 different visualisations made by Java processing. Each visual was designed by one person in the group. Each visualisation responds uniquely to the song "Heartbeat", such as elements pulsating or changing based on different frequency bands. We used the Minim audio library to extract audio from an MP3 file.
 
 # Instructions
-
+1. Run and debug Main.java
+2. Press 1 for FA.java, 2 for EC.java, 3 for PP.java and 4 for AC.java
+3. Enjoy the visuals :)
 
 # How it works
 FA.java (Fatima Alubaidi, C22305656) - This code creates a 3D visualisation with a rotating model (Ned.obj) synced to the music. It loads an audio file, analyses its frequency spectrum to determine rotation speed, and displays a model rotating around the y-axis. The code generates visualisations of orbs and dots that pulsate in response to the audio's waveform. You can pause/resume the audio with the spacebar and rewind it to the beginning by pressing '1'.
+<img width="788" alt="Screenshot 2024-04-27 at 12 11 57" src="https://github.com/Appolinarina/MusicVisuals/assets/124153153/eef9d1ce-5be8-44d9-b00d-d5541f9b7be4">
 
 ac.java (Andrew Carty, C22488994) - This code recreates conways game of life like from the labs that we did. The difference is that this one loads the audio file and then syncs the changes to whenever there is a beat detected. It then changes the colour of the cells aswell
+
 
 EC.java (Aileen Coliban, C22304291):
   This code combines audio processing with graphical visualization in a Processing environment. It loads and analyzes an audio track using Minim, utilizing FFT data to control a 3D model's rotation and a particle system that reacts dynamically to the music. Users can interact through a    control panel to manage audio playback.
