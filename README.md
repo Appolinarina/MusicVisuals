@@ -4,12 +4,12 @@ Name:		Andrew Carty,	Polina Pereyaslavets,	Aileen Coliban,		Fatima Alubaidi
 
 Student Number: C22488994,	C22447674,		C22304291,		C22305656
 
-## Instructions
-- Fork this repository and use it a starter project for your assignment
-- Create a new package named your student number and put all your code in this package.
-- You should start by creating a subclass of ie.tudublin.Visual
-- There is an example visualiser called MyVisual in the example package
-- Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
+| Student Name  | Student Number|
+| ------------- | ------------- |
+| Andrew Carty  | C22488994     |
+| Polina Pereyaslavets | C22447674 |
+| Aileen Coliban |  C22304291 |
+| Fatima Alubaidi | C22305656 |
 
 # Description of the assignment
 In this assignment, we have 4 different visualisations made by Java processing. Each visual was designed by one person in the group. Each visualisation responds uniquely to the song "Heartbeat", such as elements pulsating or changing based on different frequency bands. We used the Minim audio library to extract audio from an MP3 file.
@@ -21,21 +21,27 @@ In this assignment, we have 4 different visualisations made by Java processing. 
 
 # How it works
 FA.java (Fatima Alubaidi, C22305656) - This code creates a 3D visualisation with a rotating model (Ned.obj) synced to the music. It loads an audio file, analyses its frequency spectrum to determine rotation speed, and displays a model rotating around the y-axis. The code generates visualisations of orbs and dots that pulsate in response to the audio's waveform. You can pause/resume the audio with the spacebar and rewind it to the beginning by pressing '1'.
-<img width="788" alt="Screenshot 2024-04-27 at 12 11 57" src="https://github.com/Appolinarina/MusicVisuals/assets/124153153/eef9d1ce-5be8-44d9-b00d-d5541f9b7be4">
+<img width="791" alt="Screenshot 2024-04-27 at 12 13 28" src="https://github.com/Appolinarina/MusicVisuals/assets/124153153/8c24a4e9-57df-4dec-8f58-60f6da4b58f3">
+
+
 
 ac.java (Andrew Carty, C22488994) - This code recreates conways game of life like from the labs that we did. The difference is that this one loads the audio file and then syncs the changes to whenever there is a beat detected. It then changes the colour of the cells aswell
+<img width="996" alt="Screenshot 2024-04-27 at 12 23 28" src="https://github.com/Appolinarina/MusicVisuals/assets/124153153/b07d1412-9127-43c1-9a09-9d11c3e3f33a">
 
 
 EC.java (Aileen Coliban, C22304291):
   This code combines audio processing with graphical visualization in a Processing environment. It loads and analyzes an audio track using Minim, utilizing FFT data to control a 3D model's rotation and a particle system that reacts dynamically to the music. Users can interact through a    control panel to manage audio playback.
+<img width="761" alt="Screenshot 2024-04-27 at 12 15 32" src="https://github.com/Appolinarina/MusicVisuals/assets/124153153/794b0a75-68fb-440b-8237-dabb7dcdee93">
 Particle.java (Particle System):
-  This class defines particles with attributes such as position, velocity, and acceleration. These particles visually interpret the audio by changing movement and appearance based on the sound's amplitude and frequency, providing a dynamic audio-visual experience.
+  This class defines particles with attributes such as position, velocity, and acceleration. These particles visually interpret the audio by changing movement and appearance based on the sound's amplitude and frequency, providing a dynamic audio-visual experien
+ce.
 ControlPanel.java (User Interface):
   The ControlPanel class manages a user interface with playback controls (play, stop, rewind) and a toggleable sidebar for additional settings. User inputs control the sidebar’s visibility, enhancing the application's interactivity.
-
+<img width="764" alt="Screenshot 2024-04-27 at 12 16 18" src="https://github.com/Appolinarina/MusicVisuals/assets/124153153/181a451c-f5dc-460f-8116-09ccb2f4e51d">
 
 PP.java
 This code represents a Processing sketch that visualizes the given audio file using a 3D torus render. The audio waveform is displayed in two different manners, one: using lines drawn on all 4 edges of the screen, with the amplitude of each sample determining the length and direction of the lines, and two: the radii of the torus inside and outside. Additionally, the sketch incorporates interactive elements, such as mouse-controlled hue adjustment for the visual representation. Overall, the code gives an immersive experience for the opening of the song due to it's calm nature, the lerping torus accurately characterises the smooth and chill nature of the song.
+<img width="1001" alt="Screenshot 2024-04-27 at 12 21 55" src="https://github.com/Appolinarina/MusicVisuals/assets/124153153/20aef252-95df-4b0c-9969-5dd199b5fd8b">
 
 # What I am most proud of in the assignment
 
