@@ -12,7 +12,9 @@ Student Number: C22488994,	C22447674,		C22304291,		C22305656
 - Check out the WaveForm and AudioBandsVisual for examples of how to call the Processing functions from other classes that are not subclasses of PApplet
 
 # Description of the assignment
-
+Our assignment consists of 4 visuals, to the song of Heartbeat by Childish Gambino.
+Here is the link to our video on YouTube: 
+https://youtu.be/OaSIvvYSWE8
 
 # Instructions
 
