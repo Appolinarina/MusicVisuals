@@ -10,6 +10,7 @@
 
 # Description of the assignment
 In this assignment, we have created 4 different visualisations by using Java processing. Each visual was designed by one person in the group, and each one responds uniquely to the song "Heartbeat" by Childish Gambino, such as elements pulsating or changing based on different frequency bands. We used the Minim audio library to extract audio from an MP3 file.
+
 Here is our youtube video:
 [![MusicVisuals](https://img.youtube.com/vi/OaSIvvYSWE8/0.jpg)](https://www.youtube.com/watch?v=OaSIvvYSWE8)
 
